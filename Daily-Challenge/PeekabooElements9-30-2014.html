@@ -11,12 +11,31 @@
 
   </style>
 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
   <script>
 
-  function formSubmit() {
+  // -------------------- JS Only ----------------------- //
+/*
+  function toggleEmail() {
+    
+    // if "checked", display Email, else hide it
 
+    if (document.getElementById("subscribe").checked) {
+      document.getElementById("emailpara").style.display = "block";
+    }
+    else document.getElementById("emailpara").style.display = "none";
   }
+*/
+  // -------------------- JQuery ----------------------- //
 
+  $(document).ready(function() {
+    $('#subscribe').click(function(){
+      $('#emailpara').toggle();
+    });
+  });
+
+  
   </script>
 </head>
 
@@ -28,6 +47,12 @@
       <legend>Email subscriptions</legend>
 
       <p id="subscribepara">
+<!--    JS Only
+        <label>
+          <input type="checkbox" name="subscribe" id="subscribe" onclick="toggleEmail()">
+          Yes! I would like to receive the occasional newsletter via email.
+        </label>
+-->
         <label>
           <input type="checkbox" name="subscribe" id="subscribe">
           Yes! I would like to receive the occasional newsletter via email.
