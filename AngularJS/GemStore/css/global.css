@@ -1,0 +1,28 @@
+.box {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.gem-thumbs {
+  margin: 40px 0 20px 0;
+}
+
+.ng-invalid.ng-dirty {
+  border-color: #fa787e;
+}
+
+.ng-valid.ng-dirty {
+  border-color: #78fa89;
+}
+
+.small-image {
+  width: 50px;
+}
+
+.wrapper {
+  width: 500px;
+  margin: 50px auto;
+}

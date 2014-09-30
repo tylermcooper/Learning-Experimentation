@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="gemStore">
+
+<head>
+	<title>Gem Store</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+
+</head>
+
+
+<body ng-controller="StoreController as store">
+<div class="wrapper">
+	<!-- Products Container -->
+	<div class="list-group">
+		<!-- Product Container -->
+		<div class="list-group-item" ng-repeat="product in store.products | orderBy:'price'">
+			<h1> {{product.name}} </h1>
+			<h2> {{product.price | currency}} </h2>
+			<p> {{product.description}} </p>
+			<button ng-show="product.canPurchase"> Add to Cart </button>
+
+			<!-- Image Gallery  -->
+			<div class='gallery' ng-show="product.images.length" ng-controller="GalleryController as gallery">
+			<img class="image center-block" ng-src="{{product.images[gallery.current]}}" />
+			<ul class="list-inline thumbs">
+			  <li class="thumbnail" ng-repeat="image in product.images">
+			    <img class="small-image" ng-src="{{image}}" />
+			  </li>
+			</ul>
+			</div>
+			<!-- Panel Section Begin -->
+
+			<section ng-controller="PanelController as panel">
+
+				<ul class="nav nav-pills">
+					<li ng-class="{ active: panel.isSelected(1) }"> <a ng-click="panel.selectTab(1)">Description</a> </li>
+					<li ng-class="{ active: panel.isSelected(2) }"> <a ng-click="panel.selectTab(2)">Specifications</a> </li>
+					<li ng-class="{ active: panel.isSelected(3) }"> <a ng-click="panel.selectTab(3)">Reviews</a> </li>
+				</ul>
+			
+
+				<div class="panel" ng-show="panel.isSelected(1)">
+					<h4>Description</h4>
+					<p>{{product.description}}</p>
+				</div>
+				<div class="panel" ng-show="panel.isSelected(2)">
+					<h4>Specifications</h4>
+					<blockquote>Shine: {{product.shine}}</blockquote>
+				</div>
+				<div class="panel" ng-show="panel.isSelected(3)">
+					<h4>Reviews</h4>
+					<blockquote ng-repeat="review in product.reviews">
+						<strong>Stars: {{review.stars}}</strong>
+						{{review.body}}
+						<cite class="clearfix">by: {{review.author}}</cite>
+					</blockquote>
+
+					<!--  Review Form -->
+		            
+		            <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+		              <!--  Live Preview -->
+		              <blockquote>
+		                <strong>{{reviewCtrl.review.stars}} Stars</strong>
+		                {{reviewCtrl.review.body}}
+		                <cite class="clearfix">by: {{reviewCtrl.review.author}}</cite>
+		              </blockquote>
+
+		              <!--  Review Form -->
+		              <h4>Submit a Review</h4>
+		              <fieldset class="form-group">
+		                <select class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" ng-model="reviewCtrl.review.stars" required>
+		                  <option value="">Rate the Product</option>
+		                </select>
+		              </fieldset>
+		              <fieldset class="form-group">
+		                <textarea class="form-control" placeholder="Write a short review of the product..." title="Review" ng-model="reviewCtrl.review.body" required></textarea>
+		              </fieldset>
+		              <fieldset class="form-group">
+		                <input type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" ng-model="reviewCtrl.review.author" required/>
+		              </fieldset>
+		              <fieldset class="form-group">
+		                <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+		              </fieldset>
+		            </form>
+
+
+				</div>
+			</section>
+
+			<!-- Panel Section End -->
+
+		</div>
+	</div>
+</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	<script type="text/javascript" src="js/min/app.min.js"></script>
+
+
+</body>
+
+
+</html>
+
