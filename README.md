@@ -1,4 +1,4 @@
-Development
+Learning & Experimentation 
 ===========
 
-Testing &amp; Experimentation
+Various test projects and code snippets
