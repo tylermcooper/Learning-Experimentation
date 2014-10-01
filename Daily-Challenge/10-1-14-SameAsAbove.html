@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JavaScript Challenges</title>
+
+  <style>
+
+  #emailpara {
+    display: none;
+  }
+
+  </style>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <script>
+  // The aim of this challenge is to automatically copy the postal address to the home address field if a user checks the "Same as above" checkbox. In addition to this, we'll disable the home address field when the checkbox is checked.
+
+
+  // -------------------- JS Only ----------------------- //
+
+  function autoFill() {  
+    if ( document.getElementById('homepostalcheck').checked ) {
+    document.getElementById('homeaddress').value = document.getElementById('postaladdress').value;
+    document.getElementById('homeaddress').disabled = true;
+    }
+    else {
+    document.getElementById('homeaddress').value = "";
+    document.getElementById('homeaddress').disabled = false;      
+    }
+
+  }
+
+
+  </script>
+</head>
+
+
+<body>
+  <form action="">
+    <fieldset>
+
+      <legend>Billing Information</legend>
+
+      <p>
+        <label>
+          Postal Address:<br>
+        <textarea name="postaladdress" id="postaladdress"></textarea>
+        </label>
+      </p>
+      
+      <p>
+        Home Address:<br>
+        <label>
+           <input type="checkbox" name="homepostalcheck" id="homepostalcheck" onclick="autoFill()">
+           Same as above
+        </label>
+        <br>
+        <textarea name="homeaddress" id="homeaddress"></textarea>
+      </p>
+
+    </fieldset>
+  </form>
+</body>
+</html>
