@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Eloquent Javascript Chapter 2</title>
+</head>
+
+<body>
+
+<h2>Exercise #1: Minimum</h2>
+<!-- 
+
+The previous chapter introduced the standard function Math.min that returns its smallest argument. We can do that ourselves now. Write a function min that takes two arguments and returns their minimum.
+
+-->
+
+<h4>Solution #1</h4>
+
+<script>
+
+  function min(a, b) {
+    if (a < b) {
+      return a;
+    }
+    else return b;
+  }
+
+  document.write(min(0, 10));
+  document.write(min(0, -10));
+   
+</script>
+
+<h2>Exercise #2: Recursion</h2>
+<!-- 
+
+Define a recursive function isEven corresponding to this description. The function should accept a number parameter and return a Boolean.
+Test it on 50 and 75. See how it behaves on -1. Why? Can you think of a way to fix this?
+
+-->
+
+<h4>Solution #1</h4>
+
+<script>
+
+  function isEven(number) {
+    if (number == 0) {
+      return true;
+    }
+    else if (number == 1) {
+      return false;
+    }
+    else {
+      return isEven(number-2);
+    }
+  }
+
+  document.write(isEven(50) + "<br>");
+  document.write(isEven(75) + "<br>");
+  document.write(isEven(-1)); 
+
+// Because -1 is neither 1 or 0 and our recursion substracts 2, it will never == 0 || 1.  Thus, an infinite loop, eventually hitting the stack space maximum  To fix this, we could take the absolute value of our number variable as in solution #2
+
+</script>
+<h4>Solution #2 - Absolute Value</h4>
+
+<script>
+
+  function isEvenV2(number) {
+    absValue = Math.abs(number)
+    if (absValue == 0) {
+      return true;
+    }
+    else if (absValue == 1) {
+      return false;
+    }
+    else {
+      return isEven(absValue-2);
+    }
+  }
+
+  document.write(isEvenV2(50) + "<br>");
+  document.write(isEvenV2(75) + "<br>");
+  document.write(isEvenV2(-1) + "<br>");
+  document.write(isEvenV2(-30)); 
+
+
+
+</script>
+
+<h2>Exercise #3: Bean Counting</h2>
+<!-- 
+
+Write a function countBs that takes a string as its only argument and returns a number that indicates how many uppercase “B” characters are in the string.
+
+Next, write a function called countChar that behaves like countBs, except it takes a second argument that indicates the character that is to be counted (rather than counting only uppercase "B" characters). Rewrite countBs to make use of this new function.
+
+
+-->
+
+<h4>Solution #1</h4>
+
+<script>
+
+  function countBs(string) {
+    var count = 0;
+    var strLength = string.length;
+    for (i = 0; i < strLength; i++) {
+      if (string.charAt(i) == "B") count++;
+    };
+    return count;
+  }
+
+  function countChar(string, character) {
+    var count = 0;
+    var strLength = string.length;
+    for (i = 0; i < strLength; i++) {
+      if (string.charAt(i) == character) count++;
+    };
+    return count;
+
+  }
+
+  document.write(countBs("BumbleBeeB") + "<br>");
+  document.write(countChar("BumbleBeeB", "B"));
+
+</script>
+
+
+
+</body>
+
+</html>
