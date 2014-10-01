@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Eloquent Javascript Chapter 4</title>
+</head>
+
+<body>
+
+<h2>Exercise #1: The Sum of a Range</h2>
+<!-- 
+
+Write a range function that takes two arguments, start and end, and returns an array containing all the numbers from start up to (and including) end.
+
+Next, write a sum function that takes an array of numbers and returns the sum of these numbers. Run the previous program and see whether it does indeed return 55.
+
+As a bonus assignment, modify your range function to take an optional third argument that indicates the “step” value used to build up the array. If no step is given, the array elements go up by increments of one, corresponding to the old behavior. The function call range(1, 10, 2) should return [1, 3, 5, 7, 9]. Make sure it also works with negative step values so that range(5, 2, -1) produces [5, 4, 3, 2].
+
+-->
+
+<h4>Solution #1</h4>
+
+<script>
+
+  function range(start, end, step) {
+    var rangeArray = [];
+    var stepper = 1;
+
+    if (step) {
+      stepper = step;
+    }
+
+    if (start < end) {
+      for (i = start; i < end + 1; i += stepper) {
+        rangeArray.push(i);
+      }
+    }
+    else {
+      for (i = start; i > end - 1; i += stepper) {
+        rangeArray.push(i);
+      }
+    }
+
+    return rangeArray;
+  }
+
+  function sum(numbers) {
+    var arrayLength = numbers.length;
+    var total = 0;
+    for (i = 0; i < arrayLength; i++) {
+      total += numbers[i];
+    }
+    return total;
+  }
+  document.write("Array: [" + range(5,2,-1) + "]" + "<br>");
+  document.write("Sum of Range: " + sum(range(5, 2, -1)));
+
+</script>
+
+<h2>Exercise #2: Reversing an Array</h2>
+<!-- 
+
+For this exercise, write two functions, reverseArray and reverseArrayInPlace. The first, reverseArray, takes an array as argument and produces a new array that has the same elements in the inverse order. The second, reverseArrayInPlace, does what the reverse method does: it modifies the array given as argument in order to reverse its elements. Neither may use the standard reverse method.
+
+Thinking back to the notes about side effects and pure functions in the previous chapter, which variant do you expect to be useful in more situations? Which one is more efficient?
+
+-->
+
+<h4>Solution #1</h4>
+
+<script>
+  function reverseArray(toReverse) {
+    // -1 to account for 0th element
+    var revLength = toReverse.length - 1;
+    var reversed = [];
+
+    for (i = 0; i < revLength + 1; i++) {
+      reversed[i] = toReverse[revLength - i];
+    }
+
+    return reversed;
+  }
+
+  function reverseArrayInPlace(toReverse) {
+    var count = 0;
+    var halfRevLength = Math.floor(.5 * (toReverse.length));
+    var revLength = toReverse.length - 1;
+ 
+    for (i = 0; i < halfRevLength; i++) {
+      var tempLow = toReverse[i];
+      var tempHigh = toReverse[revLength - i];
+
+      toReverse[i] = tempHigh;
+      toReverse[revLength - i] = tempLow;
+    }
+
+    return toReverse;
+  }
+
+  var test = ["Apple", "Oranges", "Peaches", "Grapes", "Dragonfruit", "Bananas"];
+  document.write(test + "<br><br>");
+  document.write(reverseArray(test) + "<br>");
+  document.write(reverseArrayInPlace(test));
+ 
+
+
+
+</script>
+
+</body>
+
+</html>
