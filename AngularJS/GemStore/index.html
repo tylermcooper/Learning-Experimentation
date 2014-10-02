@@ -3,11 +3,10 @@
 
 <head>
 	<title>Gem Store</title>
-	<link rel="stylesheet" type="text/css" href="css/global.css">
-	<link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
-
+	<script src="js/vendor/bootstrap.min.js"></script>
 </head>
 
 
@@ -17,9 +16,16 @@
 	<div class="list-group">
 		<!-- Product Container -->
 		<div class="list-group-item" ng-repeat="product in store.products | orderBy:'price'">
-			<h1> {{product.name}} </h1>
-			<h2> {{product.price | currency}} </h2>
-			<p> {{product.description}} </p>
+			<!-- 
+
+			Using this ng-include, the page doesn't display differently, but loads differently.  These are loaded through AJAX after the first HTML page has been served. 
+			
+			<div ng-include="'product-title.html'"></div>
+			Below is a better way of doing this, using an Element Directive "product-title"
+			-->
+
+			<product-title></product-title>
+
 			<button ng-show="product.canPurchase"> Add to Cart </button>
 
 			<!-- Image Gallery  -->

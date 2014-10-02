@@ -1,6 +1,8 @@
 (function() {
   var app = angular.module('gemStore', []);
 
+  // Controller Definitions
+
   app.controller('StoreController', function(){
     this.products = gems;
   });
@@ -111,6 +113,17 @@
   		this.review = {};
   	}
 
+  });
+
+
+  // Directive Definition
+  // Camel case in definition equates to "-" in HTML
+
+  app.directive('productTitle', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'product-title.html'
+    };
   });
 
 })();
