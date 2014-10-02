@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>No JS Responsive Slider</title>
+
+<style>
+
+/* Keyframes w/ vendor prefixes will use webkit for controls for convenience */
+@keyframes slide {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+
+@-webkit-keyframes slide {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+
+@-moz-keyframes slide {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+
+@-o-keyframes slide {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+
+@-webkit-keyframes back {
+0% { left: 100%; }
+}
+
+/* Slider Structure */
+
+section#slider {
+	width: 80%;
+	max-width: 980px;
+	max-height: 550px;
+	margin: auto auto;
+
+	overflow: hidden;
+}
+
+section#slider figure {
+
+	/* position: relative; allows us to move figure (left: ..) more easily during animation */
+	position: relative;
+	width: 500%;
+	margin: 0;
+	padding: 0;
+
+	/* font-size: 0; removes extra space around images in figure element */
+	font-size: 0;
+	/* bugfix for Safari 5 for Windows */
+	text-align: left;
+	-webkit-animation: 10s slide infinite; /* Safari 4+ */
+	-moz-animation:   10s slide infinite; /* Fx 5+ */
+	-o-animation:      10s slide infinite; /* Opera 12+ */
+	animation: 10s slide infinite;
+}
+
+	/* very rough "pause" on hover, will actually pause in between image transition as well*/
+section#slider figure:hover {
+	-webkit-animation-play-state: paused;
+}
+
+section#slider figure img {
+	width: 20%;
+	height: auto;
+
+	/* bugfix for Safar 5 again */
+	float: left;
+}
+
+</style>
+
+</head>
+
+<body>
+
+  <section id="slider">
+    <h1>No JS, Responsive CSS Slider</h1>
+  	<figure>
+		<img src="https://unsplash.imgix.net/uploads%2F14115409319165441c030%2Fa1d0230a?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=ceaf6a3ec69b55768d4546cb34f3fd7b" alt="">
+		<img src="https://unsplash.imgix.net/uploads%2F14115408840644deb16b0%2F2dc933e3?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=b226e242cd70a675259651c2f6513c2c" alt="">
+		<img src="https://unsplash.imgix.net/uploads%2F14115120538776712c565%2Fa699942a?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=24971114fea861716e18eacd3efd0ad8" alt="">
+		<img src="https://unsplash.imgix.net/reserve/x6VeZAhRpqd8LczPAOGC_2014-08-27%2002.46.52%201.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=fe60d1f729b0e3e166a03420c63ab49f" alt="">
+		<img src="https://unsplash.imgix.net/reserve/tlC8KhNJR0CA2xdomLfx_DSC_0358-2.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=4e9db0a7a961e4d49945771128ab53f4" alt="">
+  	</figure>
+
+  </section>
+
+</body>
+</html>
