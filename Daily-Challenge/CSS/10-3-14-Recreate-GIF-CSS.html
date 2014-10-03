@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Recreate GIF with HTML/CSS</title>
+
+  <style>
+
+/* I was unable to complete this challenge in the amount of time I had, so I'm using this answer to walk through and understand how it was accomplished! */
+
+.shape{
+    margin: 36px;
+    float: left;
+    border-style: solid;
+    border-width: 20px 20px 20px 20px;
+    border-color: transparent transparent #1EB287 #1EB287;
+    position: relative;
+    transform: rotateZ(180deg);
+    transform-origin: 20px;
+}
+
+.shape::after{
+    content: "";
+    position: absolute;
+    float: left;
+    border-style: solid;
+    border-width: 20px 20px 20px 20px;
+    border-color: #1EB287 #1EB287 transparent transparent;
+    right: -19px;
+    bottom: -21px;
+    transform: rotate3d(1,1,0,0deg);
+}
+
+@-webkit-keyframes shapeshift {
+    0%   { 
+        border-color: transparent transparent #1EB287 #1EB287;
+        transform: rotateZ(180deg);
+        border-radius: 0px;         
+    }
+
+    33% { 
+        border-color: transparent transparent #158BC5 #158BC5;
+        transform:rotateZ(270deg) skewY(-15deg)skewX(-15deg);
+        border-radius: 0px;
+    }
+    
+    67% { 
+        border-color: transparent transparent #D25E51 #D25E51;
+        transform: rotateZ(315deg);
+        border-radius: 30px;
+    }
+
+    100% { 
+        border-color: transparent transparent #1EB287 #1EB287;
+        transform: rotateZ(540deg);
+        border-radius: 0px;
+    }
+}
+
+@-webkit-keyframes shapeshiftafter {
+    0%   { 
+        border-color: #1EB287 #1EB287 transparent transparent;
+        transform: rotate3d(1,1,0,0deg);
+        border-radius: 0px;
+    }
+
+    33% { 
+        border-color: #158BC5 #158BC5 transparent transparent;
+        transform: rotate3d(1,1,0,90deg);
+        border-radius: 0px;
+    }
+
+    67% { 
+        border-color: #D25E51 #D25E51 transparent transparent;
+        transform: rotate3d(1,1,0,0deg);
+        border-radius: 30px;
+
+    }
+
+    100% { 
+        border-color: #1EB287 #1EB287 transparent transparent;
+        transform: rotate3d(1,1,0,0deg);
+        border-radius: 0px;
+
+    }
+}
+
+.animate {
+    -webkit-animation: shapeshift 1.5s infinite;
+}
+
+.animate::after {
+    -webkit-animation: shapeshiftafter 1.5s infinite;
+}
+
+
+/* blue: #158BC5 */
+/* red: #D25E51 */
+
+
+
+
+
+
+  </style>
+
+<head>
+
+<body>
+
+<div class="shape animate"></div>
+
+<img src="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407310358spinner-cropped.gif" alt="The GIF" />
+
+
+
+
+</body>
+</html>
