@@ -55,9 +55,7 @@
 100% { left: -400%; }
 }
 
-@-webkit-keyframes back {
-0% { left: 100%; }
-}
+
 
 /* Slider Structure */
 
@@ -88,8 +86,9 @@ section#slider figure {
 	animation: 10s slide infinite;
 }
 
+	/* very rough "pause" on hover, will actually pause in between image transition as well*/
 section#slider figure:hover {
-	    -webkit-animation-play-state: paused;
+	-webkit-animation-play-state: paused;
 }
 
 section#slider figure img {
