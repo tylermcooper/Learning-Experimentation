@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Fixed Scroll</title>
+<meta charset="UTF-8">
+<style>
+
+	body {
+		margin: 0;
+	}
+
+	.fixed {
+		background: url('top-image.jpg') no-repeat;
+		width: 100%;
+		height: 800px;
+		position: fixed;
+		background-size: cover;
+		z-index: -1;
+		top: 0;
+		left: 0;
+	}
+
+
+	.other-divs {
+		width: 800px;
+		text-align: center;
+		margin: 20px auto;
+	}
+
+	.other-divs img {
+		margin: 20px 0;
+	}
+
+	.wrapper {
+		width: 100%;
+		background-color: white;
+		margin-top: 100%;
+	}
+
+	.jumbotron {
+		width: 100%;
+		text-align: center;
+		top: 50%;
+		position: relative;	
+
+	}
+
+	.jumbotron h1 {
+		font-family: 'Helvetica', sans-serif;
+		text-transform: uppercase;
+		font-size: 36px;
+		color: white;
+		background-color: rgba(0,0,0,.6);
+		display: inline-block;
+		padding: 15px;
+		border-radius: 3px;
+	}
+
+
+</style>
+</head>
+
+
+<body>
+
+	<div class="fixed">
+		<div class="jumbotron">
+			<h1>Some Sweet Text n' Stuff</h1>
+		</div>
+	</div>
+	<div class="wrapper">
+		<div class="other-divs">
+			<img src="http://placehold.it/500x500" alt="image1">
+			<img src="http://placehold.it/500x500" alt="image2">
+			<img src="http://placehold.it/500x500" alt="image2">
+		</div>
+	</div>
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$('.wrapper').css('margin-top', $('.fixed').height());
+	});
+	</script>
+
+</body>
+</html>
