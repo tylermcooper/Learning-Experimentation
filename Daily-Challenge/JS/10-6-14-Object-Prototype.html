@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Object Prototype</title>
+</head>
+
+<body>
+<!--
+define a spacify function which takes a string as an argument, and returns the same string but with each character separated by a space.
+-->
+
+<script> 
+  function spacify(toSpace) {
+  	return toSpace.split("").join(" ");
+  }
+  console.log(spacify("Tyler"));
+
+  String.prototype.spacify = function() {
+  	return this.split("").join(" ");
+  }
+
+  console.log("Prototype".spacify());
+
+  /* What are the perils of defining properties directly on prototypes, especially on [Object]?
+	 *************************************
+
+  When defining DATA properties to prototypes like below, each iteration of the object will be set with that particular property.
+
+  ______________________________
+  
+  function Car(make) {
+	this.make = make;
+  }
+
+  Car.prototype.trim = "SE";  
+
+  var honda = new Car("Honda"), var toyota = new Car("Toyota");
+  honda.trim --> "SE"
+  toyota.trim --> "SE"
+
+  ______________________________
+  
+  This is an anti-pattern.
+
+  */
+
+
+
+  /* What is the different between a function expression and a function declaration?
+     *************************************
+  Function expressions, i.e., var exp = function() {return "Hello" }, are only loaded when the interpreter reaches that line of code.
+
+  Function declarations, i.e., function decl() { return "Hello" }, are all loaded before any code is executed.
+
+  What this means practically is that the code below returns    
+
+  alert(exp() + " :: Function Expressions won't load before interpreter reaches the code"); 
+  var exp = function() {return "Hello" };
+  	--> "Uncaught TypeErro: undefined is not a function"
+
+  */
+
+  alert(decl() + " :: Function Declarations are loaded immediately and available to call at any place in the code");
+  function decl() { return "Hello 2" };
+
+
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
