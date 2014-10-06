@@ -69,7 +69,12 @@ Thinking back to the notes about side effects and pure functions in the previous
 <h4>Solution #1</h4>
 
 <script>
+
+/*
   function reverseArray(toReverse) {
+
+    // First attempt, should have used unshift/push
+
     // -1 to account for 0th element
     var revLength = toReverse.length - 1;
     var reversed = [];
@@ -80,6 +85,25 @@ Thinking back to the notes about side effects and pure functions in the previous
 
     return reversed;
   }
+*/
+
+  function reverseArray(toReverse) {
+    var revLength = toReverse.length -1;
+    var reversed = [];
+    
+    for (i = 0; i <= revLength; i++) {
+        reversed.unshift(toReverse[i]);
+    }
+
+/*
+    for (i = revLength; i >= 0; i--) {
+        reversed.push(toReverse[i]);
+    }
+*/
+
+    return reversed;
+  }
+
 
   function reverseArrayInPlace(toReverse) {
     var count = 0;
@@ -98,9 +122,10 @@ Thinking back to the notes about side effects and pure functions in the previous
   }
 
   var test = ["Apple", "Oranges", "Peaches", "Grapes", "Dragonfruit", "Bananas"];
+  var test2 = ["Apple", "Oranges", "Peaches", "Grapes", "Dragonfruit", "Bananas"];
   document.write(test + "<br><br>");
   document.write(reverseArray(test) + "<br>");
-  document.write(reverseArrayInPlace(test));
+  document.write(reverseArrayInPlace(test2));
  
 
 
