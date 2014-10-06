@@ -126,9 +126,129 @@ Thinking back to the notes about side effects and pure functions in the previous
   document.write(test + "<br><br>");
   document.write(reverseArray(test) + "<br>");
   document.write(reverseArrayInPlace(test2));
- 
+</script>
 
+<h2>Exercise #3: A List</h2>
+<!-- 
 
+Write a function arrayToList that builds up a data structure like the previous one when given [1, 2, 3] as argument, and write a listToArray function that produces an array from a list. Also write the helper functions prepend, which takes an element and a list and creates a new list that adds the element to the front of the input list, and nth, which takes a list and a number and returns the element at the given position in the list, or undefined when there is no such element.
+
+If you haven’t already, also write a recursive version of nth.
+-->
+
+<h4>Solution #1</h4>
+
+<script>
+
+  function arrayToList(toList) {
+    var myList = {};
+    myList = {value: toList[toList.length - 1], rest: null};
+    for (i = toList.length - 2; i >= 0; i--) {
+      myList = {value: toList[i], rest: myList};
+    };
+
+    return myList;
+  };
+
+  function listToArray(toArray) {
+    var myArray = [];
+
+    for (var node = toArray, i = 0; node; node = node.rest, i++) {
+      myArray[i] = node.value;
+    };
+
+    return myArray;
+  };
+
+  function prepend(element, toPrepend) {
+    var myList = {value: element, rest: toPrepend};
+
+    return myList;
+  };
+
+  function nth(list, index) {
+
+  /*  Non-recursive */
+
+    for (var node = list, i = 0; node; node = node.rest, i++) {
+      if (index == i) {
+        return node.value;
+      };
+    };
+  };
+
+  console.log(arrayToList([1,2,3]));
+  console.log(listToArray(arrayToList([1,2,3])));
+  console.log(prepend(10, prepend(20, null)));
+  console.log(nth(arrayToList([10, 20, 30]), 1));
+
+</script>
+
+<h2>Exercise #4: Deep Comparison</h2>
+<!-- 
+
+Write a function, deepEqual, that takes two values and returns true only if they are the same value or are objects with the same properties whose values are also equal when compared with a recursive call to deepEqual.
+
+-->
+
+<h4>Solution #1</h4>
+
+<script>
+
+  function deepEqual(arg1, arg2) {
+    
+    if ( (typeof arg1) === (typeof arg2) ) {
+      
+          console.log((typeof arg1) + " " + (typeof arg2));
+
+          if ( (typeof arg1) !== null ) {
+                
+                if ( (typeof arg1) === "object" ) {
+
+                        if (Object.keys(arg1).length == Object.keys(arg2).length) {
+                          for (var prop in arg1) {                         
+                              if (arg2.prop) {                                
+                                deepEqual(arg1.prop, arg2.prop);
+                              }
+                              else { 
+                                console.log("flag5");
+                                return false;
+                              };
+                            }
+
+                        }
+                        else { 
+                          console.log("flag4");
+                          return false;
+                        };
+
+                }
+
+                else if ( arg1 === arg2 ) {
+                  return true;
+                }
+                else { 
+                  console.log("flag3");
+                  return false;
+                };
+          }
+
+          else { 
+            console.log("flag2");
+            return false;
+          };
+    }
+    else {
+      console.log("flag1");
+      return false;
+    };
+  };
+
+  var obj = {here: {is: "an"}, object: 2};
+
+  console.log(deepEqual(obj, obj));
+  console.log(deepEqual(obj, {here: 1, object: 2}));
+  console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 
 </script>
 
