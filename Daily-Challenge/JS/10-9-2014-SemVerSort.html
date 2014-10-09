@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Semantic Version Sort</title>
+</head>
+
+<body>
+<!--
+
+For the purpose of this challenge, you will be sorting a list of Semantic Versions into chronological order, and you will do it like so:
+  First, compare the major version.
+  If they are the same, compare the minor version.
+  If they are the same, compare the patch version.
+  If those are all the same, check if the version has a label - ignore the content of the label. A version with a label (prerelease) comes before one without a label (final release.)
+  Ignore the build metadata.
+
+Input: 
+
+7
+2.0.11-alpha
+0.1.7+amd64
+0.10.7+20141005
+2.0.12+i386
+1.2.34
+2.0.11+i386
+20.1.1+i386
+
+-->
+
+
+<script>
+
+  var semVerList = [
+    "2.0.11-alpha", 
+    "0.1.7+amd64",
+    "0.10.7+20141005",
+    "2.0.12+i386",
+    "1.2.34",
+    "2.0.11+i386",
+    "20.1.1+i386"
+  ];
+
+  function semVerSort(toSort) {
+    
+    var tempArray = [];
+    var listLength = toSort.length -1;
+    var sorted = 0;
+
+    while (sorted !== 6) {
+      for (i = 0; i < listLength; i++) {
+
+        var listSplitA = toSort[i].split(".");
+        var listSplitB = toSort[i+1].split(".");
+
+        if (listSplitA > listSplitB) {
+          var temp = toSort[i];
+          toSort[i] = toSort[i+1];
+          toSort[i+1] = temp;
+        }
+        else sorted++;
+      };
+
+      if (sorted == 6) {
+        return toSort;
+      };
+
+    };
+
+
+    return toSort;
+  };
+
+  console.log(semVerSort(semVerList));
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
