@@ -201,20 +201,43 @@ Write a function, deepEqual, that takes two values and returns true only if they
       
           console.log((typeof arg1) + " " + (typeof arg2));
 
-          if ( (typeof arg1) !== null ) {
-                
-                if ( (typeof arg1) === "object" ) {
+            if ( arg1 !== undefined && arg1 !== null ) {
+                console.log("Catch 1");
+                if ( (typeof arg1) == "object" ) {
+                        console.log("Catch 2");
+                        var count1 = 0;
+                        var count2 = 0;
 
-                        if (Object.keys(arg1).length == Object.keys(arg2).length) {
-                          for (var prop in arg1) {                         
-                              if (arg2.prop) {                                
-                                deepEqual(arg1.prop, arg2.prop);
+                        
+                        for (var i in arg1) {
+                          if (arg1.hasOwnProperty(i)) {
+                            count1++;
+                          }
+                        }
+
+                        for (var e in arg2) {
+                          if (arg2.hasOwnProperty(e)) {
+                            count2++;
+                          }
+                        }
+
+                        console.log("Object Property Count -> " + count1 + " :: " + count2);
+
+                        if ( count1 == count2  ) {
+
+
+                          for (var prop in arg1) {     
+
+
+                              if (arg2.hasOwnProperty(prop)) {
+                                console.log("Recursion: deepEqual(" + arg1[prop] + "," + arg2[prop] + ");");                                
+                                deepEqual(arg1[prop], arg2[prop]);
                               }
                               else { 
                                 console.log("flag5");
                                 return false;
                               };
-                            }
+                          };
 
                         }
                         else { 
@@ -224,7 +247,7 @@ Write a function, deepEqual, that takes two values and returns true only if they
 
                 }
 
-                else if ( arg1 === arg2 ) {
+                else if ( arg1 == arg2 ) {
                   return true;
                 }
                 else { 
@@ -247,8 +270,10 @@ Write a function, deepEqual, that takes two values and returns true only if they
   var obj = {here: {is: "an"}, object: 2};
 
   console.log(deepEqual(obj, obj));
-  console.log(deepEqual(obj, {here: 1, object: 2}));
+ /*
+  console.log(deepEqual(8, 8));
   console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+*/
 
 </script>
 
