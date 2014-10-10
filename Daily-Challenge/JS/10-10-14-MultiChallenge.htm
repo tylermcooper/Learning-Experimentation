@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>10-10-14 Challenges</title>
+</head>
+
+<body>
+<!--
+
+
+-->
+
+
+<script>
+
+//Reverse Practice
+function reverse(str) {
+  var strArray = str.split("");
+  var strLeng = strArray.length - 1;
+  var strHalf = Math.floor((strArray.length - 1) / 2);
+  
+  for (var i = 0; i <= strHalf; i++) {
+    var temp = strArray[i];
+ 
+    strArray[i] = strArray[strLeng-i];
+    strArray[strLeng-i] = temp;
+  };
+  
+  str = strArray.join("");
+  return str; 
+};
+
+console.log(reverse("Hello"));
+//Reverse End
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
