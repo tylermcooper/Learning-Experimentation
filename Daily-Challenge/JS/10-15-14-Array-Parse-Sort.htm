@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>10-15-14 Challenge</title>
+</head>
+
+<body>
+<!--
+Recent code challenge I was unable to solve in the time allotted..
+Given entries, a new line each, combine and sort by name > $
+
+Input:
+
+andrew $1\n
+dustin $2\n
+andrew $1\n
+joe $3\n
+
+Output:
+
+joe $3
+andrew $2
+dustin $2
+-->
+
+
+<script>
+var str = "andrew $1\ndustin $2\nandrew $1\njoe $3\njoe $2\nandrew $3\ndustin $3\ngreg $4\ndustin $3";
+var list = str.split("\n");
+// output --> ["andrew $1", "dustin $2", "andrew $1", "joe $3", ""] 
+// because split compliments join, the last "" is necessary to rejoin the elements with the correct line breaks
+console.log(list);
+// string broken up into multidim array
+for (i = 0; i < (list.length); i++) {
+	list[i] = list[i].split(" ");
+};
+
+// step 1: Sort by name
+list.sort();
+list.reverse();
+
+// step 2: Find duplicate names, combine them, and delete extra entry
+Array.prototype.combine = function(a, b) {
+	if (a[0] === b[0]) {
+		a[1] = "$" + (Number(a[1].replace(/[^0-9\.]+/g,"")) + Number(b[1].replace(/[^0-9\.]+/g,""))) ;
+
+		var i = list.indexOf(b);
+		list.splice(i, 1);
+	}
+	else count++;
+};
+
+var count = 0;
+while (count != list.length) {
+	for(i=0; i < list.length-1; i++) {
+		list.combine(list[i], list[i+1]);
+	}
+}
+
+// step 3: Sort by dollars first, then names
+
+function sortFunction(a, b) {
+	if (a[1] == b[1]) {
+		return a[0].toLowerCase().localeCompare(b[0].toLowerCase());
+	}
+	else return (a[1] > b[1]) ? -1 : 1;
+}
+
+list.sort(sortFunction);
+
+for(i=0; i < list.length; i++) {
+	console.log(list[i][0] + " " + list[i][1]);
+};
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
